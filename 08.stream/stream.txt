@@ -1,0 +1,86 @@
+## stream
+
+ 1. Node中很多对象都是基于流实现的
+    http模块的Request和Response对象
+    process.stdout对象
+ 2. 所有的流都是EventEmitter的实例
+ 3. Node中常见的四种基本流类型
+   1. 可读流
+   2. 可写流
+   3. 双工流
+   4. 转换流
+ 4. 
+  
+
+18201533685 
+  13593148409 陈志洋
+    主要 Vue uniapp(App) h5 
+   1. 自我介绍
+   2. vue组件传递的方式  
+      props provide(怎样实现数据响应式) vuex $refs
+      vue-router的两种实现方式 hash history  x
+      vuex 
+      为什么使用Vdom? 
+      setState  x
+      合成事件   x
+
+   3. 项目中用到哪些性能优化 x
+      性能优化：组件库 表格二次封装 提取公共样式 公共方法 http
+      强缓存 协商缓存
+        1. 缓存
+        2. HTTP
+      为什么大图片不能使用base64// 比较大
+      no-chche 和 no-store
+      ci/cd
+      jwt 权限管理
+        
+      axios请求封装同一个页面发送多个请求，loading效果是怎样封装的
+
+   4. 小程序是怎样进行包的更新的  x
+     
+   5. commonjs和esModule的区别 x
+       - 服务端 
+       - tree-shaking 
+       - 执行编译
+   6. 媒体文件上传流程是怎样的 数据协议格式和后端是怎样处理的 x
+   7. 继承方式
+    1. 继承方式 原型继承 extends  对象  x
+      
+   8. 消息推送的方式
+   9. webpack的构建流程  x
+      loader
+      http的协议 sourceMap 文件映射
+
+   10. node流
+      - node
+      - 
+
+    15235979487 
+
+  1. 检测数据类型的凡是有哪些 
+      typeof instanceof object.  constructor
+  2. js在AST的是怎样编译的
+        var a = '1233'
+        babel vistor 
+  3. axios请求封装同一个页面发送多个请求，loading效果是怎样封装的
+  4. 虚拟DOM js对象 屏蔽了平台无关性
+     
+  5. 怎样终端一个promise 
+     1. promise
+     2. 
+
+李志超面试评价：2-2(偏低一点)
+  1. js css基础很不错，
+  2. 工程化能力也不错
+  3. Vue技术栈, 对架构不够深
+  4. 知识面不是很广，主要负责web端
+
+  小程序
+  vue h5
+  axios
+
+ // 文件上传 
+  
+
+
+  
