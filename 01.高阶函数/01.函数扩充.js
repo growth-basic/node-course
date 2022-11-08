@@ -23,3 +23,18 @@ newFn("killian");
 // 函数的柯理化函数(原则上是函数的参数是一个) 和偏函数(不定函数参数的个数)
 // 判断函数的类型
 // 1.typeof 2.Object.prototype.toString.call 3.instanceof 4.Array.isArray 5.constructor
+
+
+//发布订阅模式： 发布者和观察者之间没有关系
+const event = {
+  arr: [],
+  on(fn){
+    this.arr.push(fn)
+  },
+  emit() {
+    this.arr.forEach(fn => fn())
+  }
+}
+
+//观察者模式: 观察者和被观察者之间存在关系，被观察者的状态发生变化后，要通知观察者内部发生了变化
+//内部状态发生变换后要通知观察者
