@@ -49,6 +49,9 @@ class Promise {
     this.onRejectedCllbacks = [] // 专门用来存放失败的回调
 
     const resolve = (value) => {
+      if (value instanceof Promise) {
+        return value.then(resolve, reject)
+      }
       if (this.status === PENDING) {
         this.value = value;
         this.status = FULFILLED;
@@ -73,7 +76,8 @@ class Promise {
   }
 
   then(onFulfilled, onRejected) {
-    console.log(this.status, '')
+    onFulfilled = typeof onFulfilled === 'function'? onFulfilled: v => v;
+    onRejected = typeof onRejected === 'function'? onRejected: err => { throw err };
     // 每一次then的时候重新返回一个新的promise
     let promise2 = new Promise((resolve, reject) => {
       if (this.status === FULFILLED) {
@@ -128,6 +132,46 @@ class Promise {
     })
     return promise2
   }
+  catch(callback) {
+    this.then(null, callback)
+  }
+  // finally表示的不是最终的意思，是无论如何都会执行
+  // 如果返回的是一个Promise, 会等到Promise执行结束后执行, 如果返回的是失败会将失败的原因传递给写个error
+  static resolve (data) {
+    return new Promise((resolve, reject) => {
+      resolve(data)
+    })
+  }
+
+  static reject (reason) {
+    return new Promise((resolve, reject) => {
+      reject(reason)
+    })
+  }
 }
 
+
+Promise.prototype.finally = function(callback) {
+  // 1，无论怎样都执行, 最终返回一个promise
+  return this.then((value) => { // value 上一个Promise返回值
+    //2. 当执行成功的回调的时候，会把成功的值透传， 
+    return Promise.resolve(callback()).then(() => value)
+  }, (reason) => {
+    // 3. 当finally执行返回一个reject的值，会把final的值进行传递出去
+    // 4. callback中返回一个失败的promise的状态
+    return Promise.resolve(callback()).then(() => {throw reason})
+  })
+}
+
+// promise解决的问题：1. 回调嵌套的问题 2. 同步多个异步的结果
+
+Promise.defer = Promise.deferred = function () {
+  let dfd = {}
+  dfd.promise = new Promise((resolve, reject) => {
+    dfd.resolve = resolve
+    dfd.reject = reject
+  })
+  return dfd
+}
+//安装 promises-aplus-tests -g
 module.exports = Promise;

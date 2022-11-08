@@ -51,24 +51,51 @@ const Promise = require("./promise/Promise");
 //   console.log(err, '//err')
 // })
 // promise的需求整改
-let p = new Promise((resolve) => {
-  resolve(100)
+// let p = new Promise((resolve) => {
+//   resolve(100)
+// })
+// let promise2 = p.then((data) => {
+//   // 返回的是promise
+//   // 出现了问题
+//     return new Promise((resolve, reject) => {
+//       setTimeout(() => {
+//         reject("错误")
+//       })
+//     })
+// })
+
+// promise2.then((data) => {
+//   console.log(data, "成功")
+// }).catch((err) => {
+//   console.log(err, 'err')
+// })
+
+// Promise.resolve(new Promise((resolve) => {
+//   resolve('ok')
+// })).then(res => console.log(res))
+// Promise.reject('reject').catch(res => console.log(res))
+// finally表示不是最终的意思，是无论如何都会执行
+// Promise.resolve(123).then(() => {}).finally(() => {
+//   console.log('finally')
+// })
+
+
+Promise.reject('ok').finally(() => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(200)
+    }, 1000);
+  })
+}).then(res => {
+  console.log(res, 'res')
+}).catch((err) => {
+  console.log(err, 'err')
 })
-let promise2 = p.then((data) => {
-  // 返回的是promise
-  // 出现了问题
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        reject("错误")
-      })
-    })
+
+const fs = require("fs")
+const util = require('util')
+
+const read = util.promisify(fs.readFile)
+read("./name.txt").then(res => {
+  console.log(res)
 })
-
-promise2.then((data) => {
-  console.log(data, "成功")
-}, (err) => {
-  console.log(err, '失败')
-})
-
-
-

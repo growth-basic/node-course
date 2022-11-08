@@ -18,3 +18,9 @@
 7. 成功有成功的原因(value) 失败有失败的原因(reason)如果 new Promise 的状态中发生了异常和reject这两种都会执行失败态
 
 8. promise的链式调用问题
+
+9. Promise的静态方法 resolve  reject
+   resolve会等待promise执行完毕，直到是一个普通值为止
+   reject不会有等待效果
+
+
